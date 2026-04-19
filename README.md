@@ -1,94 +1,91 @@
-🚀 DevOps Java App (Spring Boot + Docker + Kubernetes)
+# 🚀 DevOps Java App (Spring Boot + Docker + Kubernetes)
 
+---
 
-📌 Overview
+## 📌 Overview
 
-This project demonstrates an end-to-end DevOps pipeline using a Java Spring Boot application — from development and containerization to cloud deployment on Kubernetes.
+This project demonstrates an **end-to-end DevOps pipeline** using a Java Spring Boot application — from development and containerization to cloud deployment on Kubernetes.
 
 It showcases how to:
 
-Build and test a Spring Boot application
-Containerize it using Docker
-Push images to a container registry (Docker Hub or GCP Artifact Registry)
-Deploy to a managed Kubernetes cluster (GKE Autopilot)
-Automate everything using CI/CD pipelines
+- Build and test a Spring Boot application  
+- Containerize it using Docker  
+- Push images to a container registry (Docker Hub or GCP Artifact Registry)  
+- Deploy to a managed Kubernetes cluster (GKE Autopilot)  
+- Automate everything using CI/CD pipelines  
+
 ---
 
-🏗️ Tech Stack
-Java (Spring Boot)
-Docker
-Kubernetes (GKE Autopilot)
-GitHub Actions (CI/CD)
-Docker Hub / GCP Artifact Registry
+## 🏗️ Tech Stack
 
+- ☕ Java (Spring Boot)  
+- 🐳 Docker  
+- ☸️ Kubernetes (GKE Autopilot)  
+- ⚙️ GitHub Actions (CI/CD)  
+- ☁️ Docker Hub / GCP Artifact Registry  
 
-⚙️ Features
-REST API endpoint
-Fully containerized application
-Kubernetes manifests for deployment
-Automated CI/CD pipeline
-Cloud-native deployment workflow
+---
 
+## ⚙️ Features
 
-🧭 Architecture
-Developer → GitHub → CI/CD Pipeline → Docker Build → Container Registry → GKE Autopilot → Live App
-🖥️ Demo (Screenshots & Video)
+- REST API endpoint  
+- Fully containerized application  
+- Kubernetes deployment manifests  
+- Automated CI/CD pipeline  
+- Cloud-native deployment workflow  
+
+---
+
+## 🧭 Architecture
+
+```text
+Developer → GitHub → CI/CD Pipeline → Docker Build → Container Registry → GKE Autopilot → Live Application
+🖥️ Demo
 📸 Screenshots
 
-Add screenshots here:
+Add your screenshots below:
 
 Application running locally
 Docker container logs
 Kubernetes pods/services
-GKE dashboard
-
-
+GKE Autopilot dashboard
 🎥 Video Walkthrough
 
-Add your demo video link here (YouTube / Loom):
+Add your demo video link (YouTube / Loom)
 
-Example:
+Example flow:
 
-Building the app
-Dockerizing the app
+Building the application
+Containerizing with Docker
 Pushing image to registry
 Deploying to GKE
 Accessing the live service
-
-
 🚀 Run Locally
 ./mvnw spring-boot:run
 
-Then visit:
+👉 Open in browser:
 
 http://localhost:8080
-
-
 🐳 Docker
-Build Image
+🔨 Build Image
 docker build -t devops-java-app .
-Run Container
+▶️ Run Container
 docker run -p 8080:8080 devops-java-app
-
-
 📦 Push to Container Registry
-Docker Hub
+🐳 Docker Hub
 docker tag devops-java-app <your-dockerhub-username>/devops-java-app
 docker push <your-dockerhub-username>/devops-java-app
-GCP Artifact Registry
+☁️ GCP Artifact Registry
 gcloud auth configure-docker
+
 docker tag devops-java-app <region>-docker.pkg.dev/<project-id>/<repo>/devops-java-app
 docker push <region>-docker.pkg.dev/<project-id>/<repo>/devops-java-app
-
-
 ☸️ Kubernetes Deployment (GKE Autopilot)
-Apply Kubernetes Manifests
+📥 Apply Manifests
 kubectl apply -f k8s/
-Verify Deployment
+🔍 Verify Deployment
 kubectl get pods
 kubectl get services
-
-
 🔁 CI/CD Pipeline
 
 This project uses GitHub Actions to automate:
@@ -96,26 +93,20 @@ This project uses GitHub Actions to automate:
 Build & test the application
 Build Docker image
 Push image to container registry
-(Optional) Deploy to Kubernetes
+Deploy to Kubernetes (optional step)
 
-Pipeline is triggered automatically on every push.
-
-
+✔ Pipeline triggers automatically on every push to main branch.
 
 🌐 Access the Application
-Local: http://localhost:8080
-Kubernetes: Use the external service IP
-
-
+🖥️ Local: http://localhost:8080
+☸️ Kubernetes: via external service IP
 📈 Future Improvements
-Add Helm charts for better Kubernetes management
-Implement monitoring with Prometheus & Grafana
-Add logging with ELK/Cloud Logging
-Enable auto-scaling (HPA)
-Secure app with Ingress + HTTPS
-Full GitOps workflow (ArgoCD)
-
-
+📦 Add Helm charts for Kubernetes
+📊 Add monitoring with Prometheus & Grafana
+🪵 Add centralized logging (ELK / Cloud Logging)
+📈 Enable Horizontal Pod Autoscaling (HPA)
+🔐 Add Ingress + HTTPS security
+🔄 Implement GitOps with ArgoCD
 👤 Author
 
 Abubakar
