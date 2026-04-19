@@ -1,1 +1,121 @@
-.
+🚀 DevOps Java App (Spring Boot + Docker + Kubernetes)
+
+
+📌 Overview
+
+This project demonstrates an end-to-end DevOps pipeline using a Java Spring Boot application — from development and containerization to cloud deployment on Kubernetes.
+
+It showcases how to:
+
+Build and test a Spring Boot application
+Containerize it using Docker
+Push images to a container registry (Docker Hub or GCP Artifact Registry)
+Deploy to a managed Kubernetes cluster (GKE Autopilot)
+Automate everything using CI/CD pipelines
+
+
+🏗️ Tech Stack
+Java (Spring Boot)
+Docker
+Kubernetes (GKE Autopilot)
+GitHub Actions (CI/CD)
+Docker Hub / GCP Artifact Registry
+
+
+⚙️ Features
+REST API endpoint
+Fully containerized application
+Kubernetes manifests for deployment
+Automated CI/CD pipeline
+Cloud-native deployment workflow
+
+
+🧭 Architecture
+Developer → GitHub → CI/CD Pipeline → Docker Build → Container Registry → GKE Autopilot → Live App
+🖥️ Demo (Screenshots & Video)
+📸 Screenshots
+
+Add screenshots here:
+
+Application running locally
+Docker container logs
+Kubernetes pods/services
+GKE dashboard
+
+
+🎥 Video Walkthrough
+
+Add your demo video link here (YouTube / Loom):
+
+Example:
+
+Building the app
+Dockerizing the app
+Pushing image to registry
+Deploying to GKE
+Accessing the live service
+
+
+🚀 Run Locally
+./mvnw spring-boot:run
+
+Then visit:
+
+http://localhost:8080
+
+
+🐳 Docker
+Build Image
+docker build -t devops-java-app .
+Run Container
+docker run -p 8080:8080 devops-java-app
+
+
+📦 Push to Container Registry
+Docker Hub
+docker tag devops-java-app <your-dockerhub-username>/devops-java-app
+docker push <your-dockerhub-username>/devops-java-app
+GCP Artifact Registry
+gcloud auth configure-docker
+docker tag devops-java-app <region>-docker.pkg.dev/<project-id>/<repo>/devops-java-app
+docker push <region>-docker.pkg.dev/<project-id>/<repo>/devops-java-app
+
+
+☸️ Kubernetes Deployment (GKE Autopilot)
+Apply Kubernetes Manifests
+kubectl apply -f k8s/
+Verify Deployment
+kubectl get pods
+kubectl get services
+
+
+🔁 CI/CD Pipeline
+
+This project uses GitHub Actions to automate:
+
+Build & test the application
+Build Docker image
+Push image to container registry
+(Optional) Deploy to Kubernetes
+
+Pipeline is triggered automatically on every push.
+
+
+
+🌐 Access the Application
+Local: http://localhost:8080
+Kubernetes: Use the external service IP
+
+
+📈 Future Improvements
+Add Helm charts for better Kubernetes management
+Implement monitoring with Prometheus & Grafana
+Add logging with ELK/Cloud Logging
+Enable auto-scaling (HPA)
+Secure app with Ingress + HTTPS
+Full GitOps workflow (ArgoCD)
+
+
+👤 Author
+
+Abubakar
