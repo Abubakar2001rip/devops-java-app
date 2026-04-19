@@ -12,7 +12,7 @@ Containerize it using Docker
 Push images to a container registry (Docker Hub or GCP Artifact Registry)
 Deploy to a managed Kubernetes cluster (GKE Autopilot)
 Automate everything using CI/CD pipelines
-
+---
 
 🏗️ Tech Stack
 Java (Spring Boot)
