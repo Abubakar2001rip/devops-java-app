@@ -20,3 +20,4 @@ spec:
           image: abubakar2001rip/devops-java-app:latest
           ports:
             - containerPort: 8080
+
