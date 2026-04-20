@@ -44,8 +44,7 @@ jobs:
 
       - name: Push Image to DockerHub
         run: docker push ${{ secrets.DOCKER_USERNAME }}/cafe:latest
-  
-  
+        
   
   
         
