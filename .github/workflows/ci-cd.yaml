@@ -11,6 +11,7 @@ env:
   REPOSITORY: devops-repo
   IMAGE: java-app
   CLUSTER: autopilot-cluster
+  NAMESPACE: java-app
 
 jobs:
   build:
@@ -35,6 +36,7 @@ jobs:
           name: app-jar
           path: target/*.jar
 
+
   docker:
     runs-on: ubuntu-latest
     needs: build
@@ -56,6 +58,11 @@ jobs:
 
       - name: Setup gcloud
         uses: google-github-actions/setup-gcloud@v2
+        with:
+          install_components: gke-gcloud-auth-plugin
+
+      - name: Configure GKE Auth Plugin
+        run: echo "USE_GKE_GCLOUD_AUTH_PLUGIN=True" >> $GITHUB_ENV
 
       - name: Configure Docker
         run: gcloud auth configure-docker $REGION-docker.pkg.dev
@@ -67,6 +74,7 @@ jobs:
       - name: Push Docker Image
         run: |
           docker push $REGION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:${{ github.sha }}
+
 
   deploy:
     runs-on: ubuntu-latest
@@ -83,20 +91,28 @@ jobs:
 
       - name: Setup gcloud
         uses: google-github-actions/setup-gcloud@v2
+        with:
+          install_components: gke-gcloud-auth-plugin
+
+      - name: Configure GKE Auth Plugin
+        run: echo "USE_GKE_GCLOUD_AUTH_PLUGIN=True" >> $GITHUB_ENV
 
       - name: Get GKE credentials
         run: |
-          gcloud container clusters get-credentials $CLUSTER --region $REGION --project $PROJECT_ID
+          gcloud container clusters get-credentials $CLUSTER \
+            --region $REGION \
+            --project $PROJECT_ID
 
-
-      - name: Deploy (apply manifests if first time)
+      - name: Deploy Kubernetes manifests
         run: |
           kubectl apply -f k8s/
 
-      - name: Update Image
+      - name: Update Deployment Image
         run: |
-          kubectl set image deployment/java-app java-app=$REGION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:${{ github.sha }}
+          kubectl set image deployment/java-app \
+            java-app=$REGION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:${{ github.sha }} \
+            -n $NAMESPACE
 
       - name: Verify Rollout
         run: |
-          kubectl rollout status deployment/java-app
+          kubectl rollout status deployment/java-app -n $NAMESPACE
