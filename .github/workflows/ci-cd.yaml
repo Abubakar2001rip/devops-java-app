@@ -11,7 +11,6 @@ env:
   REPOSITORY: devops-repo
   IMAGE: java-app
   CLUSTER: autopilot-cluster
-  NAMESPACE: java-app
 
 jobs:
   build:
@@ -89,9 +88,6 @@ jobs:
         run: |
           gcloud container clusters get-credentials $CLUSTER --region $REGION --project $PROJECT_ID
 
-      - name: Ensure Namespace Exists
-        run: |
-          kubectl get namespace $NAMESPACE || kubectl create namespace $NAMESPACE
 
       - name: Deploy (apply manifests if first time)
         run: |
@@ -99,8 +95,8 @@ jobs:
 
       - name: Update Image
         run: |
-          kubectl set image deployment/java-app java-app=$REGION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:${{ github.sha }} -n $NAMESPACE
+          kubectl set image deployment/java-app java-app=$REGION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:${{ github.sha }}
 
       - name: Verify Rollout
         run: |
-          kubectl rollout status deployment/java-app -n $NAMESPACE
+          kubectl rollout status deployment/java-app
