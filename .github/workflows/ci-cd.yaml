@@ -103,6 +103,11 @@ jobs:
             --region $REGION \
             --project $PROJECT_ID
 
+
+      - name: Ensure Namespace Exists
+        run: |
+          kubectl get namespace $NAMESPACE || kubectl create namespace $NAMESPACE
+
       - name: Deploy Kubernetes manifests
         run: |
           kubectl apply -f k8s/
