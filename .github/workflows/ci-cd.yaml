@@ -95,3 +95,4 @@ jobs:
       - name: Verify Rollout
         run: |
           kubectl rollout status deployment/java-app -n $NAMESPACE
+
